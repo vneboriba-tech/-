@@ -1,0 +1,23 @@
+/* ---- формы и профиль ---- */
+.form-wrap {
+  max-width:560px; margin:0 auto; padding:20px;
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:16px;
+  backdrop-filter:blur(6px);
+  text-align:left
+}
+label {display:block; margin:10px 0 6px; opacity:.9}
+input[type="email"],input[type="text"],input[type="password"] {
+  width:100%; padding:12px 14px;
+  border-radius:12px;
+  border:1px solid rgba(255,255,255,.15);
+  background:rgba(0,0,0,.15);
+  color:#fff; outline:none
+}
+.input-row{margin-bottom:12px}
+.actions{margin-top:14px;display:flex;gap:10px;align-items:center}
+.notice{margin:14px 0;opacity:.9}
+.small{font-size:.9rem;opacity:.85}
+hr.soft{border:none;height:1px;background:rgba(255,255,255,.12);margin:20px 0}
+.link{color:#e0c3fc;text-decoration:underline}
