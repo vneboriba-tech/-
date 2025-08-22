@@ -1,21 +1,25 @@
 :root {
   --text:#222;
-  --accent:#4b0082;
-  --btn-bg:#4b0082;
+  --accent:#ff6b00;     /* ОРАНЖЕВЫЙ акцент */
+  --btn-bg:#ff6b00;     /* кнопки — оранжевые */
   --btn-text:#fff;
+  --muted-bg:#f7f7f7;
+  --actions-bg:#fff3e6; /* лёгкий оранжевый фон для блока с кнопками */
 }
+
+* { box-sizing: border-box; }
 
 body {
   margin:0;
   font-family:"Manrope", sans-serif;
-  background:#fff;
+  background:#fff;          /* белый фон везде */
   color:var(--text);
   text-align:center;
   position:relative;
   overflow-x:hidden;
 }
 
-/* фон-флаг */
+/* огромный флаг-призрак на фоне */
 .flag-bg {
   position:fixed;
   top:50%; left:50%;
@@ -35,13 +39,21 @@ header, section, footer {
 h1 {
   font-family:"Russo One", sans-serif;
   font-size:clamp(32px,6vw,56px);
-  color:var(--accent);
+  color:var(--accent);       /* заголовок — оранжевый */
   text-transform:lowercase;
+  margin:0 0 24px;
 }
-h2 { font-size:clamp(20px,3vw,28px); margin-bottom:20px; }
-p { max-width:800px; margin:0 auto 16px; line-height:1.6; }
+h2 {
+  font-size:clamp(20px,3vw,28px);
+  margin:0 0 20px;
+}
+p {
+  max-width:800px;
+  margin:0 auto 16px;
+  line-height:1.6;
+}
 
-/* Ценник */
+/* ---- ЦЕННИК ---- */
 .price-grid {
   display:grid;
   grid-template-columns:repeat(auto-fit, minmax(240px, 1fr));
@@ -57,35 +69,67 @@ p { max-width:800px; margin:0 auto 16px; line-height:1.6; }
   box-shadow:0 2px 6px rgba(0,0,0,.05);
 }
 .card h3 { margin:0 0 6px; color:var(--accent); }
-.price { font-weight:800; font-size:1.2rem; color:var(--accent); }
+.card p  { margin:0 0 14px; opacity:.9; }
+.price   { font-weight:800; font-size:1.2rem; color:var(--accent); }
 
-/* обо мне */
+/* ---- ОБО МНЕ ---- */
 .about-wrap {
   max-width:1100px; margin:0 auto;
   display:grid; gap:28px; align-items:center;
-  grid-template-columns:1.2fr 1fr;
+  grid-template-columns:1.2fr 1fr;   /* текст шире */
 }
+.about-text { text-align:left; }
 .about-photo {
   width:100%; border-radius:20px;
   box-shadow:0 20px 40px rgba(0,0,0,.1);
+  opacity:0;
+  transform: translateX(80px); /* старт справа */
+  transition: transform 1000ms cubic-bezier(.22,.61,.36,1), opacity 600ms ease-out;
 }
+.about-photo.show-right { opacity:1; transform: translateX(0); }
 
-/* кнопки внизу */
-#actions { background:#f5f5f5; }
+/* ---- КНОПКИ ВНИЗУ ---- */
+#actions { background:var(--actions-bg); }
 .btn {
   display:inline-block;
   margin:10px; padding:14px 28px;
   font-weight:700;
   border-radius:40px;
-  background:var(--btn-bg);
+  background:var(--btn-bg);   /* оранжевая кнопка */
   color:var(--btn-text);
   text-decoration:none;
   transition:.2s;
 }
-.btn:hover { opacity:.85; }
+.btn:hover { opacity:.88; }
+
+/* ---- MEMOJI анимация (слева направо) ---- */
+.mega-memoji {
+  max-width: 920px;
+  width: min(96vw, 920px);
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  filter: drop-shadow(0 10px 40px rgba(0,0,0,.2));
+  opacity: 0;
+  transform: translateX(-70vw);  /* старт слева за экраном */
+  transition: transform 1200ms cubic-bezier(.22,.61,.36,1), opacity 600ms ease-out;
+}
+.mega-memoji.show-left { opacity:1; transform: translateX(0); }
+
+/* ---- Утилити для внутренних страниц ---- */
+.inner { max-width:1100px; margin:0 auto; padding:20px; }
+.actions {
+  display:flex; justify-content:center; align-items:center;
+  gap:10px; margin-top:16px; text-align:center;
+}
 
 footer {
   background:#f5f5f5;
   font-size:.9em;
   color:#555;
+}
+
+/* адаптив */
+@media (max-width: 900px) {
+  .about-wrap { grid-template-columns: 1fr; }
 }
