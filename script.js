@@ -1,4 +1,8 @@
-function inView(el){ if(!el) return false; const r = el.getBoundingClientRect(); return r.top < innerHeight - 80; }
+function inView(el){ 
+  if(!el) return false; 
+  const r = el.getBoundingClientRect(); 
+  return r.top < innerHeight - 80; 
+}
 
 function onScroll(){
   const big = document.querySelector('.mega-memoji');
