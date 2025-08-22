@@ -1,120 +1,94 @@
 :root {
-  --bg1:#2a003f; --bg2:#4b0082; --bg3:#6a0dad;
-  --accent1:#e0c3fc; --accent2:#d8b4fe;
-  --btn1:#b65eff; --btn2:#ff70d9;
+  --text:#222;
+  --accent:#4b0082;
+  --btn-bg:#4b0082;
+  --btn-text:#fff;
 }
-* { box-sizing: border-box; }
+
 body {
   margin:0;
   font-family:"Manrope", sans-serif;
-  background:linear-gradient(135deg, var(--bg1), var(--bg2), var(--bg3));
-  color:#fff;
+  background:#fff;
+  color:var(--text);
   text-align:center;
-  min-height:100vh;
+  position:relative;
   overflow-x:hidden;
+}
+
+/* фон-флаг */
+.flag-bg {
+  position:fixed;
+  top:50%; left:50%;
+  transform:translate(-50%,-50%);
+  font-size:40vw;
+  opacity:0.07;
+  z-index:0;
+  pointer-events:none;
+}
+
+header, section, footer {
+  position:relative;
+  z-index:1;
+  padding:60px 20px;
+}
+
+h1 {
+  font-family:"Russo One", sans-serif;
+  font-size:clamp(32px,6vw,56px);
+  color:var(--accent);
   text-transform:lowercase;
 }
-header { padding:60px 20px; }
-h1,h2 {
-  font-family:"Russo One", sans-serif;
-  margin:0 0 24px;
-}
-h1 { font-size:clamp(32px,6vw,56px); color:var(--accent1); }
-h2 { font-size:clamp(18px,3vw,24px); color:var(--accent2); margin-bottom:40px; }
-p { margin:0 auto 16px; max-width:800px; line-height:1.6; opacity:.95; }
-.btn {
-  display:inline-block; margin:8px; padding:14px 28px;
-  font-weight:800; border-radius:40px;
-  background:linear-gradient(90deg, var(--btn1), var(--btn2));
-  color:#fff; text-decoration:none;
-  transition:transform .2s ease, box-shadow .2s ease;
-  box-shadow:0 0 14px rgba(182,94,255,.45);
-}
-.btn:hover { transform:translateY(-2px); box-shadow:0 8px 24px rgba(255,112,217,.5); }
-section { padding:80px 20px; }
-footer { background:rgba(255,255,255,.06); padding:20px; font-size:.9em; color:#cbb2ff; }
-#memoji { padding:0 0 120px; margin-top:-140px; }
-.mega-memoji {
-  width:min(96vw,920px);
-  display:block;
-  margin:0 auto;
-  filter:drop-shadow(0 10px 40px rgba(0,0,0,.4));
-  transform:translateX(-70vw);
-  opacity:0;
-  transition:transform 1200ms cubic-bezier(.22,.61,.36,1), opacity 600ms ease-out;
-}
-.mega-memoji.show { transform:translateX(0); opacity:1; }
+h2 { font-size:clamp(20px,3vw,28px); margin-bottom:20px; }
+p { max-width:800px; margin:0 auto 16px; line-height:1.6; }
 
-/* ---- ЦЕННИК ---- */
-#pricing { padding: 40px 20px 80px; }
-#pricing h2 { color: var(--accent1); }
+/* Ценник */
 .price-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 18px;
-  max-width: 1000px;
-  margin: 24px auto 0;
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(240px, 1fr));
+  gap:18px;
+  max-width:1000px;
+  margin:24px auto 0;
 }
 .card {
-  background: rgba(255,255,255,0.06);
-  border: 1px solid rgba(255,255,255,0.08);
-  border-radius: 20px;
-  padding: 20px;
-  backdrop-filter: blur(6px);
-  text-align: left;
+  background:#f9f9f9;
+  border-radius:20px;
+  padding:20px;
+  text-align:left;
+  box-shadow:0 2px 6px rgba(0,0,0,.05);
 }
-.card h3 {
-  font-family: "Russo One", sans-serif;
-  margin: 0 0 6px;
-  color: #fff;
-  text-transform: lowercase;
-}
-.card p { margin: 0 0 14px; opacity: .9; }
-.price {
-  font-weight: 800;
-  font-size: 1.2rem;
-  background: linear-gradient(90deg, var(--btn1), var(--btn2));
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
+.card h3 { margin:0 0 6px; color:var(--accent); }
+.price { font-weight:800; font-size:1.2rem; color:var(--accent); }
 
-/* ---- ОБО МНЕ ---- */
-#about { padding: 40px 20px 120px; }
+/* обо мне */
 .about-wrap {
-  max-width: 1100px; margin: 0 auto;
-  display: grid; gap: 28px; align-items: center;
-  grid-template-columns: 1.2fr 1fr; /* текст — шире */
+  max-width:1100px; margin:0 auto;
+  display:grid; gap:28px; align-items:center;
+  grid-template-columns:1.2fr 1fr;
 }
-.about-text { text-align: left; }
-.about-text h2 { color: var(--accent1); margin-bottom: 10px; }
-.about-text p { opacity: .95; }
-
-.about-pic { display: block; }
 .about-photo {
-  width: 100%; height: auto; border-radius: 28px;
-  box-shadow: 0 20px 50px rgba(0,0,0,.35);
-  transform: translateX(70vw); /* старт за экраном справа */
-  opacity: 0;
-  transition: transform 1200ms cubic-bezier(.22,.61,.36,1), opacity 600ms ease-out;
+  width:100%; border-radius:20px;
+  box-shadow:0 20px 40px rgba(0,0,0,.1);
+  opacity:0; transform:translateX(60px);
+  transition:all .8s ease;
 }
-.about-photo.show-right { transform: translateX(0); opacity: 1; }
+.about-photo.show-right { opacity:1; transform:translateX(0); }
 
-@media (max-width: 900px) {
-  .about-wrap { grid-template-columns: 1fr; }
-  #memoji { margin-top: -80px; }
+/* кнопки внизу */
+#actions { background:#f5f5f5; }
+.btn {
+  display:inline-block;
+  margin:10px; padding:14px 28px;
+  font-weight:700;
+  border-radius:40px;
+  background:var(--btn-bg);
+  color:var(--btn-text);
+  text-decoration:none;
+  transition:.2s;
 }
-/* центрируем блок с кнопкой на внутренних страницах */
-.inner { max-width: 1100px; margin: 0 auto; padding: 20px; }
+.btn:hover { opacity:.85; }
 
-.actions {
-  display: flex;
-  justify-content: center;   /* по центру по горизонтали */
-  align-items: center;
-  gap: 10px;
-  margin-top: 16px;
-  text-align: center;         /* на всякий случай */
+footer {
+  background:#f5f5f5;
+  font-size:.9em;
+  color:#555;
 }
-
-/* если заголовки «тянут» верстку влево — выравниваем весь main */
-main.inner, .inner h2, .inner p { text-align: center; }
