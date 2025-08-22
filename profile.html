@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>профиль — гайд корея</title>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;800&family=Russo+One&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.add.css">
+  <script type="module">
+    import { ensureAuth, getUser, logout, addPurchase, q } from './auth.js';
+    ensureAuth();
+    window.addEventListener('DOMContentLoaded',()=>{
+      const u = getUser();
+      document.querySelector('#who').textContent = u?.name || u?.email || 'профиль';
+      // демо: разблокировать через ?unlock=sku
+      const sku = q('unlock');
+      if(sku){ addPurchase(sku); history.replaceState({},'', 'profile.html'); }
+      const list = document.querySelector('#purchases');
+      (u.purchases || []).forEach(s=>{
+        const li = document.createElement('li');
+        li.textContent = s;
+        list.appendChild(li);
+      });
+      document.querySelector('#logout').addEventListener('click', e=>{ e.preventDefault(); logout(); });
+    });
+  </script>
+</head>
+<body>
+  <header>
+    <h1>профиль: <span id="who">—</span></h1>
+    <p class="small"><a href="index.html" class="link">← на главную</a></p>
+  </header>
+
+  <main class="inner">
+    <div class="form-wrap">
+      <h3>мои покупки</h3>
+      <ul id="purchases" class="small"></ul>
+      <hr class="soft">
+      <div class="small">
+        демо: чтобы «выдать» доступ, открой <code>profile.html?unlock=online-guide</code> или <code>?unlock=maps</code>.
+      </div>
+      <div class="actions">
+        <a class="btn" href="members.html">перейти в раздел гайдов</a>
+        <a class="link" id="logout" href="#">выйти</a>
+      </div>
+    </div>
+  </main>
+</body>
+</html>
