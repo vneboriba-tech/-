@@ -6,7 +6,6 @@
   <title>помощь с k-eta — гайд корея</title>
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;800&family=Russo+One&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="style.add.css">
 </head>
 <body>
   <header>
@@ -15,9 +14,8 @@
   </header>
 
   <main class="inner">
-    <h2>помощь с k-eta</h2>
+    <h2>оформление k-eta</h2>
     <p>заполним заявку, проверим документы и поможем оформить визу для поездки в корею.</p>
-
     <div class="actions">
       <a id="buy-keta" class="btn" href="login.html?next=profile.html%3Funlock%3Dketa">оформить за 790 ₽</a>
     </div>
@@ -25,7 +23,7 @@
 
   <script type="module">
     import { getUser } from './auth.js';
-    const u = getUser();
+    const u = getUser?.();
     const btn = document.querySelector('#buy-keta');
     if (u && btn) btn.href = 'profile.html?unlock=keta';
   </script>
