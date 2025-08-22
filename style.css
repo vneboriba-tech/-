@@ -44,3 +44,64 @@ footer { background:rgba(255,255,255,.06); padding:20px; font-size:.9em; color:#
   transition:transform 1200ms cubic-bezier(.22,.61,.36,1), opacity 600ms ease-out;
 }
 .mega-memoji.show { transform:translateX(0); opacity:1; }
+
+/* ---- ЦЕННИК ---- */
+#pricing { padding: 40px 20px 80px; }
+#pricing h2 { color: var(--accent1); }
+.price-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 18px;
+  max-width: 1000px;
+  margin: 24px auto 0;
+}
+.card {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 20px;
+  padding: 20px;
+  backdrop-filter: blur(6px);
+  text-align: left;
+}
+.card h3 {
+  font-family: "Russo One", sans-serif;
+  margin: 0 0 6px;
+  color: #fff;
+  text-transform: lowercase;
+}
+.card p { margin: 0 0 14px; opacity: .9; }
+.price {
+  font-weight: 800;
+  font-size: 1.2rem;
+  background: linear-gradient(90deg, var(--btn1), var(--btn2));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* ---- ОБО МНЕ ---- */
+#about { padding: 40px 20px 120px; }
+.about-wrap {
+  max-width: 1100px; margin: 0 auto;
+  display: grid; gap: 28px; align-items: center;
+  grid-template-columns: 1.2fr 1fr; /* текст — шире */
+}
+.about-text { text-align: left; }
+.about-text h2 { color: var(--accent1); margin-bottom: 10px; }
+.about-text p { opacity: .95; }
+
+.about-pic { display: block; }
+.about-photo {
+  width: 100%; height: auto; border-radius: 28px;
+  box-shadow: 0 20px 50px rgba(0,0,0,.35);
+  transform: translateX(70vw); /* старт за экраном справа */
+  opacity: 0;
+  transition: transform 1200ms cubic-bezier(.22,.61,.36,1), opacity 600ms ease-out;
+}
+.about-photo.show-right { transform: translateX(0); opacity: 1; }
+
+@media (max-width: 900px) {
+  .about-wrap { grid-template-columns: 1fr; }
+  #memoji { margin-top: -80px; }
+}
+
