@@ -1,15 +1,15 @@
-function inView(el){ 
-  if(!el) return false; 
-  const r = el.getBoundingClientRect(); 
-  return r.top < innerHeight - 80; 
+function inView(el){
+  if(!el) return false;
+  const r = el.getBoundingClientRect();
+  return r.top < window.innerHeight - 80;
 }
 
 function onScroll(){
-  const big = document.querySelector('.mega-memoji');
-  if (big && inView(big)) big.classList.add('show');
+  const memoji = document.querySelector('.mega-memoji');
+  if (memoji && inView(memoji)) memoji.classList.add('show-left');
 
-  const about = document.querySelector('.about-photo');
-  if (about && inView(about)) about.classList.add('show-right');
+  const photo = document.querySelector('.about-photo');
+  if (photo && inView(photo)) photo.classList.add('show-right');
 }
 
 window.addEventListener('load', onScroll);
