@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>мои гайды — гайд корея</title>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;800&family=Russo+One&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.add.css">
+  <script type="module">
+    import { ensureAuth, hasPurchase, getUser } from './auth.js';
+    ensureAuth();
+    window.addEventListener('DOMContentLoaded',()=>{
+      const u = getUser();
+      document.querySelector('#hello').textContent = u?.name || u?.email || 'друг';
+      if(hasPurchase('online-guide')){
+        document.querySelector('#guide-block').style.display = 'block';
+      }
+      if(hasPurchase('maps')){
+        document.querySelector('#maps-block').style.display = 'block';
+      }
+    });
+  </script>
+</head>
+<body>
+  <header>
+    <h1>мои гайды</h1>
+    <p class="small"><a class="link" href="profile.html">← в профиль</a></p>
+  </header>
+
+  <main class="inner">
+    <p id="hello" class="notice"></p>
+
+    <div id="guide-block" style="display:none">
+      <h2>доступ: онлайн-гид</h2>
+      <div class="form-wrap">
+        <p>контент виден, только если покупка «online-guide» активна. скачивания нет — это HTML-раздел.</p>
+        <p>пример: день 1 — рынки, кофе, n сеул тауэр…</p>
+      </div>
+    </div>
+
+    <div id="maps-block" style="display:none; margin-top:20px">
+      <h2>доступ: карты</h2>
+      <div class="form-wrap">
+        <p>пример: ссылка на интерактивные карты</p>
+      </div>
+    </div>
+
+    <div class="notice small">это демо-ограничение на статике. для настоящей защиты нужен Firebase или Netlify Identity.</div>
+  </main>
+</body>
+</html>
