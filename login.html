@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>вход — гайд корея</title>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;800&family=Russo+One&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.add.css">
+  <script type="module">
+    import { getUser, setUser, q } from './auth.js';
+    window.addEventListener('DOMContentLoaded',()=>{
+      const form = document.querySelector('#loginForm');
+      const email = document.querySelector('#email');
+      const name = document.querySelector('#name');
+      const next = q('next') || 'profile.html';
+      const existing = getUser();
+      if(existing){ location.replace(next); return; }
+      form.addEventListener('submit',(e)=>{
+        e.preventDefault();
+        const u = { email: email.value.trim(), name: name.value.trim(), purchases: [] };
+        if(!u.email){ alert('введи email'); return; }
+        setUser(u);
+        location.replace(next);
+      });
+    });
+  </script>
+</head>
+<body>
+  <header>
+    <h1>вход</h1>
+    <p class="small"><a href="index.html" class="link">← на главную</a></p>
+  </header>
+
+  <main class="inner">
+    <div class="form-wrap">
+      <form id="loginForm">
+        <div class="input-row">
+          <label for="email">email</label>
+          <input type="email" id="email" placeholder="you@example.com" required>
+        </div>
+        <div class="input-row">
+          <label for="name">имя (необязательно)</label>
+          <input type="text" id="name" placeholder="захар">
+        </div>
+        <div class="actions">
+          <button class="btn" type="submit">войти</button>
+          <span class="small">демо-вход, без пароля</span>
+        </div>
+      </form>
+      <p class="notice small">после входа появится профиль и доступ к купленным гайдам.</p>
+    </div>
+  </main>
+</body>
+</html>
