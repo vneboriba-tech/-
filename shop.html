@@ -6,7 +6,6 @@
   <title>купить карту — гайд корея</title>
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;800&family=Russo+One&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="style.add.css">
 </head>
 <body>
   <header>
@@ -17,7 +16,6 @@
   <main class="inner">
     <h2>карты для путешествий</h2>
     <p>уникальные подборки районов, кафе, локаций + секретные места в сеуле и по всей корее.</p>
-
     <div class="actions">
       <a id="buy-maps" class="btn" href="login.html?next=profile.html%3Funlock%3Dmaps">оформить за 990 ₽</a>
     </div>
@@ -25,7 +23,7 @@
 
   <script type="module">
     import { getUser } from './auth.js';
-    const u = getUser();
+    const u = getUser?.();
     const btn = document.querySelector('#buy-maps');
     if (u && btn) btn.href = 'profile.html?unlock=maps';
   </script>
