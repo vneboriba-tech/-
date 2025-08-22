@@ -32,6 +32,17 @@ hr.soft{border:none;height:1px;background:rgba(255,255,255,.12);margin:20px 0}
   margin-top: 16px;
   text-align: center;         /* на всякий случай */
 }
+/* центрируем блок с кнопкой на внутренних страницах */
+.inner { max-width: 1100px; margin: 0 auto; padding: 20px; }
+
+.actions {
+  display: flex;
+  justify-content: center;   /* по центру по горизонтали */
+  align-items: center;
+  gap: 10px;
+  margin-top: 16px;
+  text-align: center;         /* на всякий случай */
+}
 
 /* если заголовки «тянут» верстку влево — выравниваем весь main */
 main.inner, .inner h2, .inner p { text-align: center; }
